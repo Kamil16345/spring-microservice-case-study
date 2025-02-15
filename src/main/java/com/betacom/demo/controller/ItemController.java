@@ -1,8 +1,8 @@
 package com.betacom.demo.controller;
 
-import com.betacom.demo.dto.ItemRequest;
-import com.betacom.demo.dto.ItemResponse;
-import com.betacom.demo.service.ItemService;
+import com.betacom.demo.dto.item.ItemRequest;
+import com.betacom.demo.dto.item.ItemResponse;
+import com.betacom.demo.service.item.ItemService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;

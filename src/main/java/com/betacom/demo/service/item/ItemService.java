@@ -1,8 +1,8 @@
-package com.betacom.demo.service;
+package com.betacom.demo.service.item;
 
-import com.betacom.demo.dto.ItemRequest;
-import com.betacom.demo.dto.ItemResponse;
-import com.betacom.demo.model.Item;
+import com.betacom.demo.dto.item.ItemRequest;
+import com.betacom.demo.dto.item.ItemResponse;
+import com.betacom.demo.model.item.Item;
 import com.betacom.demo.repository.ItemRepository;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;

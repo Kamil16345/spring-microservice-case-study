@@ -1,15 +1,13 @@
-package com.betacom.demo.dto;
+package com.betacom.demo.dto.item;
 
-import jakarta.persistence.Id;
 import lombok.Builder;
 import lombok.Data;
 
 import java.util.UUID;
 
-@Builder
 @Data
-public class ItemResponse {
-    @Id
+@Builder
+public class ItemRequest {
     private UUID id;
     private UUID owner;
     private String name;

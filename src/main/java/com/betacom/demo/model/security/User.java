@@ -1,9 +1,14 @@
-package com.betacom.demo.model;
+package com.betacom.demo.model.security;
 
 import jakarta.persistence.*;
+import lombok.*;
 
 import java.util.UUID;
 
+@Builder
+@AllArgsConstructor
+@NoArgsConstructor
+@Data
 @Entity
 @Table(name = "users")
 public class User {

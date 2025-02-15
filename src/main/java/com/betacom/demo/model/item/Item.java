@@ -1,4 +1,4 @@
-package com.betacom.demo.model;
+package com.betacom.demo.model.item;
 
 
 import jakarta.persistence.*;

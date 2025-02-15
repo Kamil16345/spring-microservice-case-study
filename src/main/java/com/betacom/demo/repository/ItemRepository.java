@@ -1,7 +1,7 @@
 package com.betacom.demo.repository;
 
-import com.betacom.demo.dto.ItemResponse;
-import com.betacom.demo.model.Item;
+import com.betacom.demo.dto.item.ItemResponse;
+import com.betacom.demo.model.item.Item;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;

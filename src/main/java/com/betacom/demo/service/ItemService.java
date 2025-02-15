@@ -10,6 +10,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
 import java.util.UUID;
 
 @Service
@@ -28,6 +29,10 @@ public class ItemService {
         itemRepository.save(item);
         log.info("Item has been saved: " + item.getId());
         return ResponseEntity.status(HttpStatus.CREATED).body(mapToItemResponse(item));
+    }
+
+    public List<ItemResponse> getAllUserItems() {
+        return itemRepository.findAllUserItems(new UUID(11,1));
     }
 
     private ItemResponse mapToItemResponse(Item item) {

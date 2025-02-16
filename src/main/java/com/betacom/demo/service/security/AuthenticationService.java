@@ -3,6 +3,7 @@ package com.betacom.demo.service.security;
 import com.betacom.demo.dto.security.AuthenticationRequest;
 import com.betacom.demo.dto.security.AuthenticationResponse;
 import com.betacom.demo.dto.security.RegisterRequest;
+import com.betacom.demo.exception.UserAlreadyExistsException;
 import com.betacom.demo.model.security.User;
 import com.betacom.demo.repository.UserRepository;
 import lombok.RequiredArgsConstructor;
@@ -20,6 +21,10 @@ public class AuthenticationService {
     private final PasswordEncoder passwordEncoder;
 
     public String register(RegisterRequest request) {
+        User userByLogin = userRepository.findUserByLogin(request.getLogin());
+        if(userByLogin!=null){
+            throw new UserAlreadyExistsException(String.format("User with email %s already exists.", request.getLogin()));
+        }
         User user = User.builder()
                 .login(request.getLogin())
                 .password(passwordEncoder.encode(request.getPassword()))

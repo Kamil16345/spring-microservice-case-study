@@ -14,9 +14,10 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
+import java.security.Principal;
 import java.util.List;
 import java.util.Optional;
-import java.util.UUID;
+import java.util.stream.Collectors;
 
 @Service
 @RequiredArgsConstructor
@@ -43,8 +44,12 @@ public class ItemService {
         return ResponseEntity.status(HttpStatus.CREATED).body(mapToItemResponse(item));
     }
 
-    public List<ItemResponse> getAllUserItems() {
-        return itemRepository.findAllUserItems(new UUID(11, 1));
+    public List<ItemResponse> getAllUserItems(Principal principal) {
+        User userByLogin = userRepository.findUserByLogin(principal.getName());
+        List<Item> allUserItems = itemRepository.findAllUserItems(userByLogin.getId());
+        return allUserItems.stream()
+                .map(this::mapToItemResponse)
+                .collect(Collectors.toList());
     }
 
     private ItemResponse mapToItemResponse(Item item) {

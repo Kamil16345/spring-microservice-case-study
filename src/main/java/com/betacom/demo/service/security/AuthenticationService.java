@@ -22,7 +22,7 @@ public class AuthenticationService {
 
     public String register(RegisterRequest request) {
         User userByLogin = userRepository.findUserByLogin(request.getLogin());
-        if(userByLogin!=null){
+        if (userByLogin != null) {
             throw new UserAlreadyExistsException(String.format("User with email %s already exists.", request.getLogin()));
         }
         User user = User.builder()
@@ -30,7 +30,7 @@ public class AuthenticationService {
                 .password(passwordEncoder.encode(request.getPassword()))
                 .build();
         userRepository.save(user);
-        return String.format("User %s created successfully!", request.getLogin());
+        return String.format("User %s created successfully! User's ID: %s", request.getLogin(), user.getId());
     }
 
     public AuthenticationResponse login(AuthenticationRequest request) {

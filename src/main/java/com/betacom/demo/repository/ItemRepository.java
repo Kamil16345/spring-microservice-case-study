@@ -12,5 +12,5 @@ import java.util.UUID;
 public interface ItemRepository extends JpaRepository<Item, UUID> {
 
     @Query("SELECT i FROM Item i WHERE i.owner = :owner")
-    List<ItemResponse> findAllUserItems(@Param("owner") UUID owner);
+    List<Item> findAllUserItems(@Param("owner") UUID owner);
 }

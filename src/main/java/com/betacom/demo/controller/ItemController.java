@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 
+import java.security.Principal;
 import java.util.List;
 
 @RestController
@@ -27,7 +28,7 @@ public class ItemController {
 
     @GetMapping
     @ResponseStatus(HttpStatus.OK)
-    public List<ItemResponse> getAllItems(){
-        return itemService.getAllUserItems();
+    public List<ItemResponse> getAllItems(Principal principal){
+        return itemService.getAllUserItems(principal);
     }
 }

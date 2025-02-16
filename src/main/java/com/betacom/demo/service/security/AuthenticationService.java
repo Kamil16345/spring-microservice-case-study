@@ -4,6 +4,7 @@ import com.betacom.demo.dto.security.AuthenticationRequest;
 import com.betacom.demo.dto.security.AuthenticationResponse;
 import com.betacom.demo.dto.security.RegisterRequest;
 import com.betacom.demo.exception.UserAlreadyExistsException;
+import com.betacom.demo.exception.UserDoesNotExistException;
 import com.betacom.demo.model.security.User;
 import com.betacom.demo.repository.UserRepository;
 import lombok.RequiredArgsConstructor;
@@ -34,17 +35,17 @@ public class AuthenticationService {
     }
 
     public AuthenticationResponse login(AuthenticationRequest request) {
-        authenticationManager.authenticate(
-                new UsernamePasswordAuthenticationToken(
-                        request.getLogin(),
-                        request.getPassword()
-                )
-        );
+        try {
+            authenticationManager.authenticate(
+                    new UsernamePasswordAuthenticationToken(request.getLogin(), request.getPassword())
+            );
+        } catch (Exception exception) {
+            throw new UserDoesNotExistException("Could not find user with given credentials. Validate and try again.");
+        }
         var user = userRepository.findUserByLogin(request.getLogin());
         var jwtToken = jwtService.generateToken(user);
         return AuthenticationResponse.builder()
                 .token(jwtToken)
                 .build();
-
     }
 }

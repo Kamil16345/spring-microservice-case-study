@@ -28,7 +28,7 @@ public class GlobalExceptionHandler {
         Map<String, Object> body = new HashMap<>();
         body.put("timestamp", LocalDateTime.now());
         body.put("status", HttpStatus.NOT_FOUND.value());
-        body.put("error", "User with given id does not exist.");
+        body.put("error", "Not found.");
         body.put("message", exception.getMessage());
 
         return new ResponseEntity<>(body, HttpStatus.NOT_FOUND);
